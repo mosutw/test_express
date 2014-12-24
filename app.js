@@ -2,7 +2,7 @@ var express = require('express');
 var fortune = require('./lib/fortune.js');
 var bodyParser = require('body-parser');
 var formidable = require('formidable');
-var jpupload = require('jquery-file-upload-middleware');
+var jqupload = require('jquery-file-upload-middleware');
 
 var app = express();
 

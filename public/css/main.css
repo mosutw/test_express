@@ -13,7 +13,7 @@
     filter: alpha(opacity=0);
     opacity: 0;
     outline: none;
-    background: white;
+    background: red;
     cursor: inherit;
     display: block;
 }
