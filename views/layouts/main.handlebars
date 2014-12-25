@@ -13,24 +13,6 @@
 <body>
   {{{body}}}
   {{{_sections.jquery}}}
-<<<<<<< HEAD
   <script src="/js/bootstrap.min.js"></script>
-=======
-
-  {{#if showTests}}
-    <div id="mocha"></div>
-    <script src="/vendor/mocha.js"></script>
-    <script src="vendor/chai.js"></script>
-    <script>
-      mocha.ui('tdd');
-      var assert = chai.assert;
-    </script>
-    <script src="/qa/tests-global.js"></script>
-    {{#if pageTestScript}}
-      <script src="{{pageTestScript}}"></script>
-    {{/if}}
-    <script>mocha.run();</script>
-  {{/if}}
->>>>>>> parent of a7bb959... nothing
 </body>
 </html>
