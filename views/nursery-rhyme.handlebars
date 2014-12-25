@@ -1,16 +1,20 @@
 {{#section 'head'}}
     <script src="/js/handlebars.min.js"></script>
+<<<<<<< HEAD
 
     <script id="nurseryRhymeTemplate" type="text/x-handlebars-template">
+=======
+    <script id="nurseryRhymeTemplate" type="test/x-handlebars-template">
+>>>>>>> parent of 4182093... fix ch7
         Marry had a little <b>\{{animal}}<b>, its <b>\{{bodyPart}}</b>
         was <b>\{{adjective}}</b> as <b> \{{noun}}</b>.
     </script>
 {{/section}}
 
-<div id="nurseryRhyme">Click a button...</div>
+<div id="nursertRhyme">Click a button...</div>
 <hr>
-<button id="btnNurseryRhyme">Generate nursery rhyme</button>
-<button id="btnNurseryRhymeAjax">Generate nursery rhyme from AJAX</button>
+<button id="btnNurseRhyme">Generate nursery rhyme</button>
+<button id="btnNurseRhymeAjax">Generate nursery rhyme from AJAX</button>
 
 {{#section 'jquery'}}
     <script>
@@ -18,7 +22,7 @@
         var nurseryRhymeTemplate = Handlebars.compile(
             $('#nurseryRhymeTemplate').html());
 
-        var $nurseryRhyme = $('#nurseryRhyme');
+        var $nursertRhyme = $('#nurseryRhyme');
         $('#btnNurseryRhyme').on('click', function(evt){
             evt.preventDefault();
             $nurseryRhyme.html(nurseryRhymeTemplate({
