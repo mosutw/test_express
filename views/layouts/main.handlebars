@@ -11,8 +11,20 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-  {{{body}}}
+  <div class="container">
+    {{#if flash}}
+      <div class="alert alert-dismissible alert-{{flash.type}}">
+        <button type="button" class="close" data-dismiss="alert" alpha-hidden="true">&times;</button>
+        <strong>{{flash.intro}}</strong> {{{flash.message}}}
+      </div>
+    {{/if}}
+
+
+    {{{body}}}
+  </div>
   {{{_sections.jquery}}}
+
   <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
