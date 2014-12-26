@@ -19,10 +19,15 @@
                 Upload
                 <input type="file" class="form-control" required accept="image/*" id="fieldPhoto" data-url="/upload" multipart name="photo">
             </span>
-            <div id="uploads"></div>
+            <div id="fileUploads"></div>
         </div>
     </div>
 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
 </form>
 
 {{#section 'jquery'}}
@@ -35,7 +40,7 @@
                 dataType: 'json',
                 done: function(e, data){
                     $.each(data.result.files, function(index, file){
-                        $('#fileUploads').append($('<div class="upload">' + 
+                        $('#fileUploads').appends($('<div class="upload">' + 
                             '<span class="glyphicon glyphicon-ok"></span>' +
                             '&nbsp; ' + file.originalName + '</div>'));
                     });

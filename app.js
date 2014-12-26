@@ -9,7 +9,6 @@ var expressSession = require('express-session');
 var credentials = require('./credentials.js');
 var emailService = require('./lib/email.js')(credentials);
 
-
 var app = express();
 
 var handlebars = require('express3-handlebars')
