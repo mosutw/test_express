@@ -15,7 +15,10 @@
     "nodemailer": "~1.3.0",
     "morgan": "~1.5.0",
     "express-logger": "0.0.3",
-    "loadtest": "~1.2.4"
+    "loadtest": "~1.2.4",
+    "mongoose": "~3.8.21",
+    "connect": "~2.27.6",
+    "session-mongoose": "~0.5.2"
   },
   "devDependencies": {
     "chai": "^1.10.0",
