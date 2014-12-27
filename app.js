@@ -1,7 +1,6 @@
 var http = require('http');
 var fs = require('fs');
 var express = require('express');
-var fortune = require('./lib/fortune.js');
 var bodyParser = require('body-parser');
 var formidable = require('formidable');
 var jqupload = require('jquery-file-upload-middleware');
@@ -207,6 +206,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+require('./routes.js')(app);
+
 app.use('/upload',function(req,res,next){
   var now = Date.now();
   jqupload.fileHandler({
@@ -217,18 +218,6 @@ app.use('/upload',function(req,res,next){
       return '/uploads' + now;
     },
   })(req, res,next);
-});
-
-app.get('/',function(req,res){
-  console.log('home');
-  res.render('home');
-});
-
-app.get('/about',function(req,res){
-  res.render('about',{
-    fortune: fortune.getFortune(),
-    pageTestScript: '/qa/tests-about.js' 
-  });
 });
 
 app.get('/tours/hood-river', function(req, res) {
@@ -252,56 +241,6 @@ app.get('/data/nursery-rhyme', function(req,res){
   });
 });
 
-app.get('/newsletter',function(req,res){
-  console.log('get newsletter');
-  res.render('newsletter', {csrf: 'CSRF token goes here' });
-});
-
-function NewsLetterSignup(){
-}
-NewsLetterSignup.prototype.save = function(cb) {
-  cb();
-}
-
-var VALID_EMAIL_REGEX =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
-
-app.post('/newsletter', function(req,res){
-  console.log('post newsletter');
-  var name = req.body.name|| '', email = req.body.email || '';
-  console('flash');
-  if (!email.match(VALID_EMAIL_REGEX)) {
-    if (req.xhr) return res.json({error: 'Invalid name email address.'});
-    req.session.flash = {
-      type: 'danger',
-      intro: 'validation error!',
-      message: 'The email address you entered was not valid.',
-    };
-    return res.redirect(303,'/newsletter/archive');
-  }
-  new NewsLetterSignup({ name: name, email: email}).save(function(err){
-    if(err) {
-      if(req.xhr) return res.json({error: 'Database error.'});
-      req.session.flash = {
-        type: 'danger',
-        intro: 'Database error!',
-        message: 'There was a database error; please try again later.',
-      };
-      return res.redirect(303,'/newsletter/archive');
-    }
-    if(req.xhr) return res.json({success: true});
-    req.session.flash = {
-      type: 'success',
-      intro: 'Thank you!',
-      message: 'You have now been signed up for the newsletter.',
-    };
-    return res.redirect(303,'/newsletter/archive');
-  });
-});
-
-app.get('newsletter/archive', function(req,res){
-  res.render('newsletter/archive');
-});
-
 app.post('/process', function(req,res){
   console.log('req.xhr:' + req.xhr);
   console.log('req.accept:' + req.accepts('json,html'));
@@ -315,10 +254,6 @@ app.post('/process', function(req,res){
     console.log('get 303');
     res.redirect(303, '/thank-you');
   }
-});
-
-app.get('/thank-you', function(req,res){
-  res.render('thank-you');  
 });
 
 app.get('/contest/vacation-photo', function(req,res){
