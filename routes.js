@@ -10,6 +10,9 @@ module.exports = function(app){
   app.get('/newsletter/archive', main.newsletterArchive);
   app.get('/thank-you', main.genericThankYou);
 
+  app.get('/contest/vacation-photo', contest.vacationPhoto);
+  app.post('/contest/vacation-photo/:year/:month', contest.vacationPhotoProcessPost);
+  app.get('/contest/vacation-photo/entries', contest.vacationPhotoEntries);
 
   app.get('/vacations', vacation.list);
   app.get('/vacation/:vacation', vacation.detail);

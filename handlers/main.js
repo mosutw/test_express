@@ -18,7 +18,8 @@ exports.newsletter = function(req,res) {
 function NewsLetterSignup(){
 
 }
-NewsletterSignup.prototype.save = function(cb){
+
+NewsLetterSignup.prototype.save = function(cb){
   cb();
 };
 
